@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { Frame } from "framer"
+import { Frame, addPropertyControls, ControlType } from "framer"
 
-export function ImageWithOverlay() {
+export function ImageWithOverlay(props) {
     const [hover, setHover] = useState(false)
     const [position, setPosition] = useState({ x: 0, y: 0 })
 
@@ -49,7 +49,7 @@ export function ImageWithOverlay() {
                 }}
             >
                 <img
-                    src="https://png.pngtree.com/png-vector/20240715/ourmid/pngtree-cute-cartoon-3d-robot-png-image_13091152.png"
+                    src={props.imageSrc} // Use the passed imageSrc property
                     alt="Robot"
                     style={{
                         width: "100%",
@@ -94,7 +94,7 @@ export function ImageWithOverlay() {
                         background: "transparent",
                     }}
                 >
-                    Decision Support Agent
+                    {props.overlayTitle} {/* Use the passed title property */}
                 </Frame>
 
                 <Frame
@@ -136,7 +136,7 @@ export function ImageWithOverlay() {
                                 <i className="fas fa-cogs"></i>
                                 {"→"}
                             </span>
-                            Advanced AI capabilities.
+                            {props.feature1} {/* Use feature1 property */}
                         </li>
                         <li
                             style={{
@@ -158,7 +158,7 @@ export function ImageWithOverlay() {
                                 <i className="fas fa-cogs"></i>
                                 {"→"}
                             </span>
-                            High-speed processing.
+                            {props.feature2} {/* Use feature2 property */}
                         </li>
                         <li
                             style={{
@@ -179,7 +179,7 @@ export function ImageWithOverlay() {
                                 <i className="fas fa-cogs"></i>
                                 {"→"}
                             </span>
-                            Durable and efficient design.
+                            {props.feature3} {/* Use feature3 property */}
                         </li>
                     </ul>
                 </Frame>
@@ -187,3 +187,33 @@ export function ImageWithOverlay() {
         </Frame>
     )
 }
+
+// Add property controls to make it customizable in Framer
+addPropertyControls(ImageWithOverlay, {
+    imageSrc: {
+        type: ControlType.Image,
+        title: "Image Source",
+        defaultValue:
+            "https://png.pngtree.com/png-vector/20240715/ourmid/pngtree-cute-cartoon-3d-robot-png-image_13091152.png",
+    },
+    overlayTitle: {
+        type: ControlType.String,
+        title: "Overlay Title",
+        defaultValue: "Decision Support Agent",
+    },
+    feature1: {
+        type: ControlType.String,
+        title: "Feature 1",
+        defaultValue: "Advanced AI capabilities.",
+    },
+    feature2: {
+        type: ControlType.String,
+        title: "Feature 2",
+        defaultValue: "High-speed processing.",
+    },
+    feature3: {
+        type: ControlType.String,
+        title: "Feature 3",
+        defaultValue: "Durable and efficient design.",
+    },
+})
