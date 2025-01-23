@@ -8,9 +8,12 @@ export function ImageWithOverlay() {
     const handleMouseMove = (e: React.MouseEvent) => {
         if (hover) {
             const frameRect = e.currentTarget.getBoundingClientRect()
+            const offsetX = 40
+            const offsetY = 40
+
             setPosition({
-                x: e.clientX - frameRect.left - 0,
-                y: e.clientY - frameRect.top - 100,
+                x: e.clientX - frameRect.left + offsetX,
+                y: e.clientY - frameRect.top + offsetY,
             })
         }
     }
@@ -56,7 +59,6 @@ export function ImageWithOverlay() {
                 />
             </div>
 
-            {/* Overlay */}
             <Frame
                 width={500}
                 height={200}
@@ -77,7 +79,6 @@ export function ImageWithOverlay() {
                     transition: "transform 0.3s ease-in-out",
                 }}
             >
-                {/* Title */}
                 <Frame
                     width="100%"
                     height="auto"
@@ -96,16 +97,15 @@ export function ImageWithOverlay() {
                     Decision Support Agent
                 </Frame>
 
-                {/* List */}
                 <Frame
                     width="100%"
                     height="auto"
                     style={{
                         marginTop: "40px",
-                        color: "#ffffff", // White text for better readability
-                        fontSize: "14px", // Font size for easy reading
-                        fontFamily: "'Poppins', sans-serif", // Clean, modern font
-                        lineHeight: "1.6", // Line height for better spacing
+                        color: "#ffffff",
+                        fontSize: "14px",
+                        fontFamily: "'Poppins', sans-serif",
+                        lineHeight: "1.6",
                         background: "transparent",
                     }}
                 >
